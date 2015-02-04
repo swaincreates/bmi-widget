@@ -1,0 +1,50 @@
+.bmi-widget {
+	border: 1px solid black;
+	font-size: 14px;
+	text-align: center;
+	width: 250px;
+}
+
+.widget-area .widget h3.bmi-widget-title {
+	border-bottom: 1px solid black;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	padding: 10px 0px;
+	text-align: center;
+}
+
+.bmi-form-wrapper {
+	padding: 20px;
+}
+
+.bmi-widget fieldset {
+	float: right;
+	text-align: right;
+}
+
+.widget-area .widget form.bmi-widget p {
+	margin-bottom: 16px;
+}
+
+input[type="number"]#height, 
+input[type="number"]#weight,
+input[type="number"]#user_bmi {
+	border: 1px solid #ccc;
+ 	border-radius: 3px; 
+ 	font-family: inherit; 
+	padding: 6px;
+	width: 50%;
+
+}
+
+input[type="submit"]#bmi_submit {
+	background-color: black;
+	background-image: none;
+	border: none;
+	border-radius: 0px;
+	color: white;
+	font-size: 14px;
+	padding: 8px;
+	width: 100%;
+}
