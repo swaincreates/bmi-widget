@@ -12,8 +12,19 @@ Author URI: #
 add_action( 'widgets_init', function(){
      register_widget( 'BMI_Widget' );
 });
-//Register Stylesheet
-wp_enqueue_style('bmi-widget', WP_PLUGIN_URL . '/bmi-widget/bmi-widget-style.css');
+
+//Register Stylesheet and Add Theme Color with wp_add_inline_style
+function bmi_widget_styles() {
+	wp_enqueue_style('bmi-widget', WP_PLUGIN_URL . '/bmi-widget/bmi-widget-style.css');
+	$bmi_option = get_option( 'widget_bmi-widget');
+	$custom_css = "
+				.widget-area .widget .bmi-widget-title {
+					background-color: red;
+				}";
+	wp_add_inline_style( 'bmi-widget', $custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'bmi_widget_styles');
+
 
 class BMI_Widget extends WP_Widget {
 
