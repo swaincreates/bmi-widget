@@ -19,8 +19,8 @@ function bmi_widget_styles() {
 	$bmi_option = get_option( 'widget_bmi-widget');
 	$custom_css = "
 				.bmi-widget {
-					border: 1px solid {$bmi_option[2]['border_color']}
-				};
+					border: 1px solid {$bmi_option[2]['border_color']};
+				}
 				.widget-area .widget .bmi-widget-title {
 					background-color: {$bmi_option[2]['title_backround_color']};
 					color: {$bmi_option[2]['title_font_color']};
