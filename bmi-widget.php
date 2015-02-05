@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: BMI Widget
-Plugin URI: #
+Plugin URI: https://github.com/swaincreates/bmi-widget
 Description: Adds a widget that displays a BMI calculator with standard or metric measurements.
 Author: Swain Strickland
 Version: 1.0
