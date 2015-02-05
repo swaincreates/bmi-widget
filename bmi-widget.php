@@ -16,7 +16,7 @@ add_action( 'widgets_init', function(){
 //Register Stylesheet and Add Theme Color with wp_add_inline_style
 function bmi_widget_styles() {
 	wp_enqueue_style('bmi-widget', WP_PLUGIN_URL . '/bmi-widget/bmi-widget-style.css');
-	$bmi_option = get_option( 'widget_bmi-widget');
+	$bmi_option = get_option( 'widget_bmi_widget');
 	$custom_css = "
 				.bmi-widget {
 					border: 1px solid {$bmi_option[2]['border_color']};
@@ -43,7 +43,7 @@ class BMI_Widget extends WP_Widget {
 		 */
 		function __construct() {
 			parent::__construct(
-				'bmi-widget', // Base ID
+				'bmi_widget', // Base ID
 				__( 'BMI Widget', 'text_domain' ), // Name
 				array( 'description' => __( 'A simple BMI widget that displays standard or metric measurements.', 'text_domain' ), ) // Args
 			);
