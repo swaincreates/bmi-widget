@@ -13,7 +13,7 @@ add_action( 'widgets_init', function(){
      register_widget( 'BMI_Widget' );
 });
 
-//Register Stylesheet and Add Theme Color with wp_add_inline_style
+//Register stylesheet and add user color options with wp_add_inline_style
 function bmi_widget_styles() {
 	wp_enqueue_style('bmi-widget', WP_PLUGIN_URL . '/bmi-widget/bmi-widget-style.css');
 	$bmi_option = get_option( 'widget_bmi_widget');
