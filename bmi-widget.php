@@ -18,9 +18,19 @@ function bmi_widget_styles() {
 	wp_enqueue_style('bmi-widget', WP_PLUGIN_URL . '/bmi-widget/bmi-widget-style.css');
 	$bmi_option = get_option( 'widget_bmi-widget');
 	$custom_css = "
+				.bmi-widget {
+					border: 1px solid {$bmi_option[2]['border_color']}
+				};
 				.widget-area .widget .bmi-widget-title {
-					background-color: red;
-				}";
+					background-color: {$bmi_option[2]['title_backround_color']};
+					color: {$bmi_option[2]['title_font_color']};
+				}
+				#bmi_submit {
+					background-color: {$bmi_option[2]['button_background_color']};
+					border: 1px solid {$bmi_option[2]['button_background_color']};
+					color: {$bmi_option[2]['button_font_color']};
+				}
+				";
 	wp_add_inline_style( 'bmi-widget', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'bmi_widget_styles');
@@ -125,6 +135,12 @@ class BMI_Widget extends WP_Widget {
 		public function form( $instance ) {
 			$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'BMI Calculator', 'text_domain' );
 			$measurement_system = ! empty( $instance['measurement_system'] ) ? $instance['measurement_system'] : __( 'standard', 'text_domain' );
+			// vars
+			$border_color = ! empty( $instance['border_color'] ) ? $instance['border_color'] : __( '#000', 'text_domain' );
+			$title_backround_color = ! empty( $instance['title_backround_color'] ) ? $instance['title_backround_color'] : __( '#000', 'text_domain' );
+			$title_font_color = ! empty( $instance['title_font_color'] ) ? $instance['title_font_color'] : __( '#fff', 'text_domain' );
+			$button_background_color = ! empty( $instance['button_background_color'] ) ? $instance['button_background_color'] : __( '#000', 'text_domain' );
+			$button_font_color = ! empty( $instance['button_font_color'] ) ? $instance['button_font_color'] : __( '#fff', 'text_domain' );
 			?>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
@@ -137,8 +153,31 @@ class BMI_Widget extends WP_Widget {
 					<option value="1" <?php if (!empty($instance['measurement_system'])) {echo "selected";} ?>>Metric</option>
 				</select>
 			</p>
-
-
+			<!-- border_color -->
+			<p>
+				<label for="<?php echo $this->get_field_id( 'border_color' ); ?>"><?php _e( 'Border Color:' ); ?></label> 
+				<input class="widefat" id="<?php echo $this->get_field_id( 'border_color' ); ?>" name="<?php echo $this->get_field_name( 'border_color' ); ?>" type="text" value="<?php echo esc_attr( $border_color ); ?>">
+			</p>
+			<!-- title_backround_color -->
+			<p>
+				<label for="<?php echo $this->get_field_id( 'title_backround_color' ); ?>"><?php _e( 'Title Background Color:' ); ?></label> 
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title_backround_color' ); ?>" name="<?php echo $this->get_field_name( 'title_backround_color' ); ?>" type="text" value="<?php echo esc_attr( $title_backround_color ); ?>">
+			</p>
+			<!-- title_font_color -->
+			<p>
+				<label for="<?php echo $this->get_field_id( 'title_font_color' ); ?>"><?php _e( 'Title Font Color:' ); ?></label> 
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title_font_color' ); ?>" name="<?php echo $this->get_field_name( 'title_font_color' ); ?>" type="text" value="<?php echo esc_attr( $title_font_color ); ?>">
+			</p>
+			<!-- button_background_color -->
+			<p>
+				<label for="<?php echo $this->get_field_id( 'button_background_color' ); ?>"><?php _e( 'Button Background Color:' ); ?></label> 
+				<input class="widefat" id="<?php echo $this->get_field_id( 'button_background_color' ); ?>" name="<?php echo $this->get_field_name( 'button_background_color' ); ?>" type="text" value="<?php echo esc_attr( $button_background_color ); ?>">
+			</p>
+			<!-- border_font_color -->
+			<p>
+				<label for="<?php echo $this->get_field_id( 'button_font_color' ); ?>"><?php _e( 'Button Font Color:' ); ?></label> 
+				<input class="widefat" id="<?php echo $this->get_field_id( 'button_font_color' ); ?>" name="<?php echo $this->get_field_name( 'button_font_color' ); ?>" type="text" value="<?php echo esc_attr( $button_font_color ); ?>">
+			</p>
 			<?php 
 		}
 
@@ -156,6 +195,12 @@ class BMI_Widget extends WP_Widget {
 			$instance = array();
 			$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 			$instance['measurement_system'] = ( ! empty( $new_instance['measurement_system'] ) ) ? strip_tags( $new_instance['measurement_system'] ) : '';
+			//add
+			$instance['border_color'] = ( ! empty( $new_instance['border_color'] ) ) ? strip_tags( $new_instance['border_color'] ) : '';
+			$instance['title_backround_color'] = ( ! empty( $new_instance['title_backround_color'] ) ) ? strip_tags( $new_instance['title_backround_color'] ) : '';
+			$instance['title_font_color'] = ( ! empty( $new_instance['title_font_color'] ) ) ? strip_tags( $new_instance['title_font_color'] ) : '';
+			$instance['button_background_color'] = ( ! empty( $new_instance['button_background_color'] ) ) ? strip_tags( $new_instance['button_background_color'] ) : '';
+			$instance['button_font_color'] = ( ! empty( $new_instance['button_font_color'] ) ) ? strip_tags( $new_instance['button_font_color'] ) : '';
 
 			return $instance;
 		}
